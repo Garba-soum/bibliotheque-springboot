@@ -1,0 +1,25 @@
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+### IntelliJ ###
+.idea/
+*.iml
+*.ipr
+*.iws
+
+### Java ###
+*.class
+
+### Logs ###
+logs/
+*.log
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Output ###
+bin/
+out/

@@ -1,0 +1,10 @@
+POST http://localhost:8080/livres
+Content-Type: application/json
+
+{
+  "titre": "Spring Boot",
+  "auteur": "Dupont",
+  "genre": "Informatique",
+  "anneePublication": 2024,
+  "isbn": "12345"
+}
