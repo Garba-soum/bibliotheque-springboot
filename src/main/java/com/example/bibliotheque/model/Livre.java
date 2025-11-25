@@ -17,9 +17,11 @@ public class Livre {
 
     private String titre;
     private  String auteur;
-    private String genre;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
     private Integer anneePublication;
     private  String isbn;
-
 
 }

@@ -23,7 +23,7 @@ public class LivreController {
     }
 
     @GetMapping("/{id}")
-    public Livre getLivreById(@PathVariable Long id){
+    public Livre getLivreById(@PathVariable Integer id){
         return livreService.getLivreById(id);
     }
 
@@ -33,12 +33,12 @@ public class LivreController {
     }
 
     @PutMapping("/{id}")
-    public Livre updateLivre(@PathVariable Long id, @RequestBody Livre livre){
+    public Livre updateLivre(@PathVariable Integer id, @RequestBody Livre livre){
         return livreService.updateLivre(id, livre);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteLivre(@PathVariable Long id){
+    public void deleteLivre(@PathVariable Integer id){
         livreService.deleteLivre(id);
     }
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil - Bibliothèque</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        h1 { margin-bottom: 10px; }
+        p  { margin-bottom: 20px; }
+        a {
+            display: inline-block;
+            margin-right: 15px;
+            text-decoration: none;
+            color: #0066cc;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bienvenue dans la Bibliothèque</h1>
+
+<p>
+    Utilise le menu ci-dessous pour naviguer dans l’application.
+</p>
+
+<ul>
+    <li>
+        <a th:href="@{/livres-web}">📚 Voir la liste des livres</a>
+    </li>
+    <li>
+        <a th:href="@{/livres-web/ajouter}">➕ Ajouter un nouveau livre</a>
+    </li>
+    <!-- Plus tard tu pourras ajouter d'autres liens ici -->
+</ul>
+
+</body>
+</html>

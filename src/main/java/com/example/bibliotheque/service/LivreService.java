@@ -7,32 +7,32 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class LivreService {
 
     private final LivreRepository livreRepository;
+
     public LivreService(LivreRepository livreRepository) {
         this.livreRepository = livreRepository;
     }
 
-    public List<Livre> getAllLivres(){
+    public List<Livre> getAllLivres() {
         return livreRepository.findAll();
     }
 
-    public Livre getLivreById(Long id){
+    public Livre getLivreById(Integer id) {          // <-- Integer
         Optional<Livre> opt = livreRepository.findById(id);
         return opt.orElse(null);
     }
 
-    public Livre createLivre(Livre livre){
+    public Livre createLivre(Livre livre) {
         return livreRepository.save(livre);
     }
 
-    public Livre updateLivre(Long id, Livre livreDetails){
+    public Livre updateLivre(Integer id, Livre livreDetails) {   // <-- Integer
         Optional<Livre> opt = livreRepository.findById(id);
 
-        if(opt.isPresent()){
+        if (opt.isPresent()) {
             Livre livre = opt.get();
             livre.setTitre(livreDetails.getTitre());
             livre.setAuteur(livreDetails.getAuteur());
@@ -40,15 +40,12 @@ public class LivreService {
             livre.setAnneePublication(livreDetails.getAnneePublication());
             livre.setIsbn(livreDetails.getIsbn());
             return livreRepository.save(livre);
-
-        }else {
+        } else {
             return null;
         }
     }
 
-    public void deleteLivre(Long id){
+    public void deleteLivre(Integer id) {            // <-- Integer
         livreRepository.deleteById(id);
     }
-
-
 }

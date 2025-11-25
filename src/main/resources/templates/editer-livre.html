@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Éditer un livre</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { max-width: 400px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; }
+        button { margin-top: 15px; padding: 10px; cursor: pointer; }
+        a { display: inline-block; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<h1>Éditer un livre</h1>
+
+<form th:action="@{/livres-web/editer}" th:object="${livre}" method="post">
+
+    <!-- ID caché pour permettre l'UPDATE -->
+    <input type="hidden" th:field="*{id}"/>
+
+    <label for="titre">Titre :</label>
+    <input type="text" id="titre" th:field="*{titre}" required>
+
+    <label for="auteur">Auteur :</label>
+    <input type="text" id="auteur" th:field="*{auteur}" required>
+
+    <label for="isbn">ISBN :</label>
+    <input type="text" id="isbn" th:field="*{isbn}" required>
+
+    <label for="anneePublication">Année :</label>
+    <input type="number" id="anneePublication" th:field="*{anneePublication}" required>
+
+    <label for="genre">Genre :</label>
+    <select id="genre" name="genreId" required>
+        <option th:each="g : ${genres}"
+                th:value="${g.id}"
+                th:text="${g.libelle}"
+                th:selected="${g.id == livre.genre?.id}">
+        </option>
+    </select>
+
+    <button type="submit">Enregistrer les modifications</button>
+</form>
+
+<a th:href="@{/livres-web}">⬅ Retour à la liste</a>
+
+</body>
+</html>
