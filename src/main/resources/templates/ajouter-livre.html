@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un livre</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { max-width: 400px; }
+        label { display: block; margin-top: 10px; }
+        input, select { width: 100%; padding: 6px; margin-top: 4px; }
+        button { margin-top: 15px; padding: 8px 16px; }
+        a { display: inline-block; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<h1>Ajouter un livre</h1>
+
+<form th:action="@{/livres-web/ajouter}" th:object="${livre}" method="post">
+
+    <label for="titre">Titre</label>
+    <input id="titre" type="text" th:field="*{titre}" required/>
+
+    <label for="auteur">Auteur</label>
+    <input id="auteur" type="text" th:field="*{auteur}" required/>
+
+    <label for="isbn">ISBN</label>
+    <input id="isbn" type="text" th:field="*{isbn}"/>
+
+    <label for="annee">Année de publication</label>
+    <input id="annee" type="number" th:field="*{anneePublication}"/>
+
+    <label for="genre">Genre</label>
+    <select id="genre" name="genreId">
+        <option value="">-- Choisir un genre --</option>
+        <option th:each="g : ${genres}"
+                th:value="${g.id}"
+                th:text="${g.libelle}">
+        </option>
+    </select>
+
+    <button type="submit">Enregistrer</button>
+</form>
+
+<a th:href="@{/livres-web}">← Retour à la liste</a>
+
+</body>
+</html>
