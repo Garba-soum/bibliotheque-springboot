@@ -54,19 +54,18 @@ public class LivreWebController {
         return "redirect:/livres-web";
     }
 
-    // GET /livres-web/editer/{id}  -> afficher le formulaire d’édition
+    // GET /livres-web/editer/{id}  -> afficher le formulaire d'édition
     @GetMapping("/editer/{id}")
-    public String afficherFormulaireEdition(@PathVariable("id") Integer id, Model model) {
-
+    public String afficherFormulaireEdition(@PathVariable("id") Integer id,
+                                            Model model) {
         Livre livre = livreRepository.findById(id).orElse(null);
         if (livre == null) {
-            // si l'id n'existe pas, on revient à la liste
             return "redirect:/livres-web";
         }
 
         model.addAttribute("livre", livre);
         model.addAttribute("genres", genreRepository.findAll());
-        return "editer-livre";    // -> templates/editer-livre.html
+        return "editer-livre"; // templates/editer-livre.html
     }
 
     // POST /livres-web/editer/{id} -> enregistrer les modifs
@@ -78,12 +77,13 @@ public class LivreWebController {
         Genre genre = genreRepository.findById(genreId).orElse(null);
         livre.setGenre(genre);
 
-        // on s’assure que l’ID reste bien celui passé dans l’URL
+        // on s’assure que l’ID reste bien celui de l’URL
         livre.setId(id);
 
         livreRepository.save(livre);
         return "redirect:/livres-web";
     }
+
 
     // GET /livres-web/supprimer/{id} -> suppression
     @GetMapping("/supprimer/{id}")

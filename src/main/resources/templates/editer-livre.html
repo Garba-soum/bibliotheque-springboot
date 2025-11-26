@@ -16,34 +16,34 @@
 
 <h1>Éditer un livre</h1>
 
-<form th:action="@{/livres-web/editer}" th:object="${livre}" method="post">
-
-    <!-- ID caché pour permettre l'UPDATE -->
-    <input type="hidden" th:field="*{id}"/>
+<form th:action="@{'/livres-web/editer/' + ${livre.id}}"
+      th:object="${livre}"
+      method="post">
 
     <label for="titre">Titre :</label>
-    <input type="text" id="titre" th:field="*{titre}" required>
+    <input type="text" id="titre" th:field="*{titre}"/>
 
     <label for="auteur">Auteur :</label>
-    <input type="text" id="auteur" th:field="*{auteur}" required>
+    <input type="text" id="auteur" th:field="*{auteur}"/>
 
     <label for="isbn">ISBN :</label>
-    <input type="text" id="isbn" th:field="*{isbn}" required>
+    <input type="text" id="isbn" th:field="*{isbn}"/>
 
-    <label for="anneePublication">Année :</label>
-    <input type="number" id="anneePublication" th:field="*{anneePublication}" required>
+    <label for="annee">Année :</label>
+    <input type="number" id="annee" th:field="*{anneePublication}"/>
 
     <label for="genre">Genre :</label>
-    <select id="genre" name="genreId" required>
+    <select id="genre" name="genreId">
         <option th:each="g : ${genres}"
                 th:value="${g.id}"
                 th:text="${g.libelle}"
-                th:selected="${g.id == livre.genre?.id}">
+                th:selected="${livre.genre != null} ? ${g.id} == ${livre.genre.id} : false">
         </option>
     </select>
 
     <button type="submit">Enregistrer les modifications</button>
 </form>
+
 
 <a th:href="@{/livres-web}">⬅ Retour à la liste</a>
 
